@@ -33,8 +33,8 @@ d3.csv("../assets/data/data.csv").then(function(stateData, err) {
     
 
     // create scale function
-    var xLinearScale = d3.scaleLinear().domain([0, d3.max(stateData, d => d.poverty)]).range([0, width]);
-    var yLinearScale = d3.scaleLinear().domain([0, d3.max(stateData, d => d.healthcare)]).range([height, 0]);
+    var xLinearScale = d3.scaleLinear().domain([d3.min(stateData, d => d.poverty)*0.9, d3.max(stateData, d => d.poverty)*1.1]).range([0, width]);
+    var yLinearScale = d3.scaleLinear().domain([d3.min(stateData, d => d.healthcare)*0.9, d3.max(stateData, d => d.healthcare)*1.1]).range([height, 0]);
 
     //create axis functions 
     var bottomAxis = d3.axisBottom(xLinearScale);
@@ -48,6 +48,8 @@ d3.csv("../assets/data/data.csv").then(function(stateData, err) {
     var circlesGroup = chartGroup.selectAll("circle").data(stateData).enter().append("circle")
     .attr("cx", d => xLinearScale(d.poverty)).attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", "10").attr("fill", "lightblue").attr("opacity", "1");
+    // add text labels to circles
+    
     
 
     //initialize tooltip 
@@ -58,7 +60,7 @@ d3.csv("../assets/data/data.csv").then(function(stateData, err) {
     chartGroup.call(toolTip);
 
     //create event listener to display tooltip
-    circlesGroup.on("click", function(data){
+    circlesGroup.on("mouseover", function(data){
         toolTip.show(data, this);
     }).on("mouseout", function(data, index){
         toolTip.hide(data)
