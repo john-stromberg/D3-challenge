@@ -1,3 +1,8 @@
+> **Moved:** This project is maintained in [data-analytics-bootcamp-2019/projects/D3-challenge](https://github.com/john-stromberg/data-analytics-bootcamp-2019/tree/main/projects/D3-challenge).
+> This repository is retained as a historical snapshot.
+
+---
+
 # D3 - Data Journalism and D3
 
 ![Newsroom](https://media.giphy.com/media/v2xIous7mnEYg/giphy.gif)
